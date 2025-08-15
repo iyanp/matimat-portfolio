@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prince Matimat — Portfolio</title>
+  <meta name="description" content="Personal portfolio of Your Name: projects, experience, skills, and contact." />
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d10;
+      --panel: #12161b;
+      --text: #e6ebf2;
+      --muted: #9aa3af;
+      --primary: #7c5cff;
+      --primary-600:#6a46ff;
+      --accent: #18c29c;
+      --ring: #2a3240;
+      --border: #1b2130;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f7f8fb;
+        --panel: #ffffff;
+        --text: #0e1014;
+        --muted: #606b7a;
+        --primary: #5b6cff;
+        --primary-600:#4b59ff;
+        --accent: #0aa387;
+        --ring: #e7ebf3;
+        --border: #e8ecf5;
+        --shadow: 0 10px 30px rgba(16,24,40,.08);
+      }
+    }
+    html[data-theme="dark"]{
+      --bg: #0b0d10; --panel:#12161b; --text:#e6ebf2; --muted:#9aa3af; --primary:#7c5cff; --primary-600:#6a46ff; --accent:#18c29c; --ring:#2a3240; --border:#1b2130; --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    html[data-theme="light"]{
+      --bg:#f7f8fb; --panel:#fff; --text:#0e1014; --muted:#606b7a; --primary:#5b6cff; --primary-600:#4b59ff; --accent:#0aa387; --ring:#e7ebf3; --border:#e8ecf5; --shadow:0 10px 30px rgba(16,24,40,.08);
+    }
+
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1100px,92%);margin-inline:auto}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.1rem;border-radius:14px;background:var(--primary);color:#fff;border:1px solid transparent;box-shadow:var(--shadow);font-weight:600}
+    .btn:hover{background:var(--primary-600)}
+    .btn.ghost{background:transparent;color:var(--text);border-color:var(--border);box-shadow:none}
+    .btn.ghost:hover{border-color:var(--primary)}
+    .chip{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .6rem;border:1px solid var(--border);border-radius:999px;font-size:.8rem;color:var(--muted)}
+    .badge{background:rgba(124,92,255,.12);color:var(--primary);padding:.4rem .6rem;border-radius:999px;font-weight:600;font-size:.78rem;border:1px solid rgba(124,92,255,.25)}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:60;background:color-mix(in oklab, var(--bg) 86%, transparent);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--border)}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+    .brand{display:flex;align-items:center;gap:.7rem}
+    .logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;font-weight:800}
+    .navlinks{display:flex;gap:1rem;align-items:center}
+    .navlinks a{padding:.6rem .8rem;border-radius:10px;color:var(--muted)}
+    .navlinks a:hover{background:var(--panel);color:var(--text)}
+    .menu-btn{display:none}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:2.2rem;align-items:center;padding:3.2rem 0}
+    .hero-card{background:var(--panel);border:1px solid var(--border);border-radius:24px;padding:2rem;box-shadow:var(--shadow)}
+    h1{font-size:clamp(2rem,4vw,3rem);line-height:1.15;margin:.2rem 0 .8rem}
+    .subtitle{font-size:1.05rem;color:var(--muted);max-width:60ch}
+    .cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem}
+    .avatar{width:100%;aspect-ratio:1;border-radius:22px;background:linear-gradient(135deg,#141922,var(--panel));border:1px dashed var(--border);display:grid;place-items:center;color:var(--muted)}
+    .avatar img {padding: 20px; border-radius: 10%;}
+
+    /* Sections */
+    section{padding:2.6rem 0}
+    .section-head{display:flex;justify-content:space-between;gap:1rem;align-items:end;margin-bottom:1.2rem}
+    .section-head h2{margin:0;font-size:clamp(1.4rem,2.2vw,1.8rem)}
+    .grid{display:grid;gap:1rem}
+    .grid.cards{grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 4;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:1rem;transition:transform .2s ease, border-color .2s ease}
+    .card:hover{transform:translateY(-2px);border-color:var(--ring)}
+    .card .thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#1b2230,#12161b);border:1px dashed var(--border);display:grid;place-items:center;color:var(--muted);margin-bottom:.8rem}
+    .card h3{margin:.2rem 0 .3rem;font-size:1.05rem}
+    .card p{color:var(--muted);font-size:.95rem}
+    .row{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem}
+    .col-6{grid-column:span 6}.col-4{grid-column:span 4}.col-8{grid-column:span 8}.col-12{grid-column:span 12}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:1.4rem}
+    .timeline-item{position:relative;margin:0 0 1rem}
+    .timeline h3{margin:0;font-size:1rem}
+    .timeline .meta{color:var(--muted);font-size:.9rem}
+
+    /* Skills */
+    .skills{display:flex;flex-wrap:wrap;gap:.6rem}
+    .skills .chip{background:transparent}
+
+    /* Contact */
+    form{display:grid;gap:.8rem}
+    input, textarea{width:100%;padding:.9rem;border-radius:12px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+    textarea{min-height:140px}
+    input:focus, textarea:focus{outline:2px solid var(--ring);border-color:var(--primary)}
+
+    /* Footer */
+    footer{padding:2rem 0;border-top:1px solid var(--border);color:var(--muted)}
+
+    /* Utilities */
+    .spacer{height:1rem}
+    .hidden{display:none}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .card{grid-column:span 6}
+      .col-6{grid-column:span 12}
+      .col-4{grid-column:span 6}
+      .col-8{grid-column:span 12}
+    }
+    @media (max-width: 640px){
+      .navlinks{display:none}
+      .menu-btn{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);background:var(--panel);padding:.5rem .7rem;border-radius:12px;color:var(--muted)}
+      .mobile-menu{display:none;position:absolute;inset-inline:0;top:60px;background:var(--panel);border-bottom:1px solid var(--border);padding:1rem}
+      .mobile-menu a{display:block;padding:.6rem;border-radius:10px;color:var(--muted)}
+      .mobile-menu a:hover{background:var(--bg);color:var(--text)}
+      .card{grid-column:span 12}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav aria-label="Primary">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">P.M</div>
+          <strong>Prince Adrian M. Matimat</strong>
+        </div>
+        <div class="navlinks" role="menubar">
+          <a href="#about" role="menuitem">About</a>
+          <a href="#projects" role="menuitem">Projects</a>
+          <a href="#experience" role="menuitem">Experience</a>
+          <a href="#certs" role="menuitem">Certificates</a>
+          <a href="#contact" role="menuitem">Contact</a>
+          <button id="themeToggle" class="btn ghost" aria-label="Toggle dark mode">🌓</button>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-haspopup="true" aria-expanded="false">☰ Menu</button>
+      </nav>
+      <div class="mobile-menu container" id="mobileMenu" role="menu" aria-label="Mobile">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#certs">Certificates</a>
+        <a href="#contact">Contact</a>
+        <button id="themeToggleMobile" class="btn ghost" style="margin-top:.8rem;width:100%">🌓 Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" id="home">
+      <div class="hero-card">
+        <span class="badge">Available for work</span>
+        <h1>Hi, I’m <span style="color:var(--primary)">Prince Adrian M. Matimat</span> —
+          <br/>a <span style="color:var(--accent)">I.T Fresh Graduate</span>
+        </h1>
+        <p class="subtitle" style="text-align: justify;">I’m a passionate IT graduate with basic experience in web development, android development, database management, automation tools, and network administration. Basic knowledge in languages like Python and Java, I enjoy building practical solutions and learning new technologies. I aim to apply my skills to create efficient, user-focused projects that make a real impact.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn ghost" href="assets/MATIMAT-RESUME.pdf" download>Download CV</a>
+        </div>
+        <div class="spacer"></div>
+        <div class="skills">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">C++</span>
+          <span class="chip">Python</span>
+          <span class="chip">Php</span>
+          <span class="chip">Java</span>
+        </div>
+      </div>
+      <div class="avatar" aria-label="Profile photo placeholder">
+        <img src="assets/img/profile.jpg">
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="container" id="about">
+      <div class="section-head">
+        <h2>Basic Skills</h2>
+        <span class="muted">What I'm capable of</span>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <div class="hero-card" style="padding:1.2rem">
+            <strong>Programming Skills</strong>
+            <br>
+            <br>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">C++</span>
+            <span class="chip">Python</span>
+            <span class="chip">Php</span>
+            <span class="chip">Java</span>
+
+            <br>
+            <br>
+            <strong>Tools / Softwares</strong>
+            <br>
+            <br>
+            <span class="chip">VS Code</span>
+            <span class="chip">Android Studio</span>
+            <span class="chip">Google Collab</span>
+            <span class="chip">Packet Tracer</span>
+            <span class="chip">Proxmox</span>
+            <span class="chip">Linux</span>
+            <span class="chip">Windows</span>
+
+            <br>
+            <br>
+            <strong>Technical</strong>
+            <br>
+            <br>
+            <span class="chip">Basic Computer troubleshooting</span>
+            <span class="chip">Install and Configure Computer System</span>
+            <span class="chip">Basic knowledge in setting up Computer network and Servers</span>
+            <span class="chip">Packet Tracer</span>
+            
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="hero-card" style="padding:1.2rem">
+            <strong>Soft Skills</strong>
+            <ul>
+            <span class="chip">Teamwork</span>
+            <span class="chip">Willingness to learn</span>
+            <span class="chip">Creativity</span>
+            <span class="chip">Active listening</span>
+            <span class="chip">Problem solving</span>
+            <span class="chip">Critical thinking</span>
+            <span class="chip">Good communication skills</span>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="container" id="projects">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <a class="btn ghost" href="#">See all</a>
+      </div>
+      <div class="grid cards">
+        <!-- Project Card -->
+        <article class="card">
+          <div class="thumb"><img src="assets/img/capstone.png"></div>
+          <h3>Meatyculous</h3>
+          <ul>
+            <li>Capstone Porject</li>
+            <li>Meatyculous is a mobile app that uses CIELAB color segmentation to assess pork meat quality, offering an accurate and user-friendly solution for farmers, retailers, and consumers.</li>
+            <li>Role: Full Stack Developer</li> 
+          </ul>
+
+          <div class="skills" aria-label="Tech stack">
+            <span class="chip">Android Studio</span>
+            <span class="chip">OpenCV sdk</span>
+            <span class="chip">SQLite</span>
+            <span class="chip">Figma</span>
+            <span class="chip">Java</span>
+          </div>
+
+        </article>
+
+        <article class="card">
+          <div class="thumb"><img src="assets/img/epr.png"></div>
+          <h3>Electronic Patient Record</h3>
+          <ul>
+            <li>Term Group Project</li>
+            <li>A web-based application that efficiently collects and organizes patient records, enhancing accessibility and convenience for doctors and nurses.</li>
+            <li>Role: Full Stack Developer</li> 
+          </ul>
+          <div class="skills">
+            <span class="chip">Visual Studio Code</span>
+            <span class="chip">C++</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb"><img src="assets/img/portfolio.png"></div>
+          <h3>Portfolio</h3>
+          <ul>
+            <li>A simple HTML portfolio highlighting my background, experience, skills, and expertise.</li>
+          </ul>
+          
+          <div class="skills">
+            <span class="chip">Visual Studio</span>
+            <span class="chip">HTML</span>
+            <span class="chip">In-line CSS</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="container" id="experience">
+      <div class="section-head">
+        <h2>Internship Experience</h2>
+        <span class="muted">My experience</span>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="hero-card timeline">
+            <div class="timeline-item">
+              <h3>IT-Quality Assurance Intern — OpenIT Philippines, Inc</h3>
+              <div class="meta">March - June 2025 • On-site</div>
+              <ul>
+                <li>Collecting Test cases and creating Test Suites</li>
+                <li>Experienced in running Linux and Windows concurrently via Virtual Machines.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="hero-card">
+            <strong>Achievements</strong>
+            <ul>
+              <li>Successfully created Automated Test plans using Robot Framework and Ansible</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section class="container" id="certs">
+      <div class="section-head">
+        <h2>Certificates</h2>
+        <span class="muted">Proof of skills</span>
+      </div>
+      <div class="grid cards">
+        <article class="card">
+          <div class="thumb"><img src="assets/img/certificate1.jpg"></div>
+          <h3>Praticum Orientation</h3>
+          <p>Southern Luzon State University — February 2025</p>
+          <div class="cta"><a class="btn ghost" href="#">View</a></div>
+        </article>
+
+        <article class="card">
+          <div class="thumb"><img src="assets/img/certificate3.png"></div>
+          <h3>National Certificate II</h3>
+          <p>TESDA — January 2024</p>
+          <div class="cta"><a class="btn ghost" href="#">View</a></div>
+        </article>
+
+        <article class="card">
+          <div class="thumb"><img src="assets/img/certificate2.png"></div>
+          <h3>GENCONNECT PH</h3>
+          <p>DICT — APRIL 2024</p>
+          <div class="cta"><a class="btn ghost" href="#">View</a></div>
+        </article>
+        
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="container" id="contact">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <span class="muted">Let’s build something</span>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="hero-card">
+            <strong>Phone number:</strong>
+            <p class="subtitle">+63 962 819 0496</p>
+            <strong>Email:</strong>
+            <p class="subtitle">pmmatimat2021@gmail.com</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="hero-card">
+            <strong>Elsewhere</strong>
+            <p class="subtitle">I’m active on these platforms. DMs open.</p>
+            <div class="skills">
+              <a class="chip" href="https://github.com/iyanp" target="_blank" rel="noopener">GitHub</a>
+              <a class="chip" href="https://www.linkedin.com/in/prince-adrian-m-matimat-19b234314/" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="chip" href="https://www.facebook.com/prince.matimat/" target="_blank" rel="noopener">Facebook</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+        <small>© <span id="year"></span> Prince Adrian M. Matimat. All rights reserved.</small>
+        <a class="chip" href="#home" aria-label="Back to top">↑ Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobile = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => {
+      const open = mobile.style.display === 'block';
+      mobile.style.display = open ? 'none' : 'block';
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id && id.length > 1){
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
+          mobile.style.display = 'none';
+          menuBtn.setAttribute('aria-expanded','false');
+        }
+      });
+    });
+
+    // Theme toggle with localStorage
+    const root = document.documentElement;
+    const toggles = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
+
+    function applyTheme(mode){
+      if(mode === 'dark' || mode === 'light'){
+        root.setAttribute('data-theme', mode);
+        localStorage.setItem('theme', mode);
+      } else {
+        root.setAttribute('data-theme', 'system');
+        localStorage.removeItem('theme');
+      }
+    }
+
+    // Init theme
+    const saved = localStorage.getItem('theme');
+    if(saved){
+      applyTheme(saved);
+    } else {
+      // system default: do nothing; CSS handles it
+    }
+
+    toggles.forEach(btn => btn && btn.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme');
+      if(current === 'dark') applyTheme('light');
+      else applyTheme('dark');
+    }));
+  </script>
+
+</body>
+</html>
